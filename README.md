@@ -1,6 +1,6 @@
-#Overview
+# Overview
 This is simple CLI app to get beers from brewerydb. App can be extendable by creating new Class on app folder and implements Export interface.
-Add exported data will be stored at `data` folder. 
+All exported data will be stored at `data` folder. 
 I cannot provide Docker container because I didn't work with Docker.
 
 ## Install steps
