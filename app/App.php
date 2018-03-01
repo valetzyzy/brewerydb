@@ -7,7 +7,9 @@ use GetOpt\Option;
 
 class App
 {
+    /** @var int api limit */
     protected $limit;
+    /** @var string api limit */
     protected $format;
 
     /**

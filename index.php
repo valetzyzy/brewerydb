@@ -12,7 +12,7 @@ if (php_sapi_name() !== 'cli') {
     throw new Exception('Sorry, this application use CLI');
 }
 
-
+//create App instance
 $app = new App();
 $app->run();
 

@@ -8,13 +8,27 @@ use SimpleXMLElement;
 
 class Beer implements Export
 {
+    /** @var int default limit */
     const DEFAULT_LIMIT = 10;
 
-    private $items = [];
-    private $format = 'json';
-    private $limit = 10;
+    /** @var string default export format */
+    const DEFAULT_FORMAT = 'json';
 
-    public function __construct($limit, $format)
+    /** @var array store items from API */
+    private $items = [];
+
+    /** @var string format for export. Default is JSON */
+    private $format;
+
+    /** @var int limit */
+    private $limit;
+
+    /**
+     * Beer constructor.
+     * @param int $limit
+     * @param string $format
+     */
+    public function __construct($limit = self::DEFAULT_LIMIT, $format = self::DEFAULT_FORMAT)
     {
         $this->format = $format;
         $this->limit = $limit;
@@ -35,7 +49,6 @@ class Beer implements Export
             App::cliLog('Getting beers:', false);
 
             $params = [
-                'limit' => $this->limit,
                 'abv'  => '0,100'
             ];
 
@@ -53,6 +66,9 @@ class Beer implements Export
         return $this;
     }
 
+    /**
+     * Call function to export
+     */
     public function save()
     {
         App::cliLog("Saving to $this->format file", false);
@@ -79,7 +95,9 @@ class Beer implements Export
         $this->items = $data['data'];
 
         $parsedData = [];
-        foreach ($this->items as $item) {
+        foreach ($this->items as $key => $item) {
+            if ($key > $this->limit) break; //limit reached - exit; Api doesn't support limit
+
             $parsedData[] = [
                 'name' => $item['name'],
                 'description' => isset($item['description']) ? $item['description'] : 'No Description',
