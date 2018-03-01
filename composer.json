@@ -1,0 +1,22 @@
+{
+    "name": "valetzyzy/brewerydb",
+    "authors": [
+        {
+            "name": "Nazar Chorniy",
+            "email": "valetzyzy@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "ulrichsg/getopt-php": "3.1",
+        "liamthegrey/brewerydb-php": "dev-master"
+    },
+    "autoload": {
+        "files": [
+            "helpers/helpers.php"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
